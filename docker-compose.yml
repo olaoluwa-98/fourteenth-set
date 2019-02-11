@@ -9,10 +9,40 @@ services:
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
+      - BASE_URL=backend
+      - BASE_PORT=1337
     ports:
       - 80:80
 
   backend:
     build: backend
+    image: strapi/strapi
+    environment:
+      - APP_NAME=strapi-app
+      - DATABASE_CLIENT=mongo
+      - DATABASE_HOST=db
+      - DATABASE_PORT=37017
+      - DATABASE_NAME=strapi
+      - DATABASE_USERNAME=
+      - DATABASE_PASSWORD=
+      - DATABASE_SSL=false
+      - DATABASE_AUTHENTICATION_DATABASE=strapi
+      - HOST=localhost
+    ports:
+      - 1337:1337
     volumes:
-      - ./backend:/app
+      - ./backend:/usr/src/api/strapi-app
+      - /usr/src/api/strapi-app/node_modules
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: mongo
+    environment:
+      - MONGO_INITDB_DATABASE=strapi
+    ports:
+      - 27017:27017
+    volumes:
+      - ./db:/data/db
+    restart: always
