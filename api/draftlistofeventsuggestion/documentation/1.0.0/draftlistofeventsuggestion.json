@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/draftsubmissions": {
+    "/draftlistofeventsuggestions": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -12,7 +12,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Draftsubmission"
+                    "$ref": "#/components/schemas/Draftlistofeventsuggestion"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Draftsubmission"
+          "Draftlistofeventsuggestion"
         ],
         "parameters": [
           {
@@ -175,7 +175,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Draftsubmission"
+                  "$ref": "#/components/schemas/Draftlistofeventsuggestion"
                 }
               }
             }
@@ -213,7 +213,7 @@
         },
         "summary": "",
         "tags": [
-          "Draftsubmission"
+          "Draftlistofeventsuggestion"
         ],
         "requestBody": {
           "description": "",
@@ -221,14 +221,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewDraftsubmission"
+                "$ref": "#/components/schemas/NewDraftlistofeventsuggestion"
               }
             }
           }
         }
       }
     },
-    "/draftsubmissions/count": {
+    "/draftlistofeventsuggestions/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -280,12 +280,12 @@
         },
         "summary": "",
         "tags": [
-          "Draftsubmission"
+          "Draftlistofeventsuggestion"
         ],
         "parameters": []
       }
     },
-    "/draftsubmissions/{_id}": {
+    "/draftlistofeventsuggestions/{_id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -295,7 +295,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Draftsubmission"
+                  "$ref": "#/components/schemas/Draftlistofeventsuggestion"
                 }
               }
             }
@@ -333,7 +333,7 @@
         },
         "summary": "",
         "tags": [
-          "Draftsubmission"
+          "Draftlistofeventsuggestion"
         ],
         "parameters": [
           {
@@ -357,7 +357,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Draftsubmission"
+                  "$ref": "#/components/schemas/Draftlistofeventsuggestion"
                 }
               }
             }
@@ -395,7 +395,7 @@
         },
         "summary": "",
         "tags": [
-          "Draftsubmission"
+          "Draftlistofeventsuggestion"
         ],
         "requestBody": {
           "description": "",
@@ -403,7 +403,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewDraftsubmission"
+                "$ref": "#/components/schemas/NewDraftlistofeventsuggestion"
               }
             }
           }
@@ -469,7 +469,7 @@
         },
         "summary": "",
         "tags": [
-          "Draftsubmission"
+          "Draftlistofeventsuggestion"
         ],
         "parameters": [
           {
@@ -488,130 +488,66 @@
   },
   "components": {
     "schemas": {
-      "Draftsubmission": {
+      "Draftlistofeventsuggestion": {
         "required": [
-          "id",
-          "nameOfSet"
+          "id"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "draftUser": {
+          "draftSubmission": {
             "required": [
               "id",
-              "email",
-              "matric_no"
+              "nameOfSet"
             ],
             "properties": {
               "id": {
                 "type": "string"
               },
-              "email": {
+              "draftUser": {
                 "type": "string"
               },
-              "matric_no": {
+              "nameOfSet": {
                 "type": "string"
               },
-              "draftSubmission": {
+              "nameOfSetInspiration": {
                 "type": "string"
-              }
-            }
-          },
-          "nameOfSet": {
-            "type": "string",
-            "default": "",
-            "minLength": 2
-          },
-          "nameOfSetInspiration": {
-            "type": "string",
-            "default": ""
-          },
-          "legacyProject": {
-            "type": "string",
-            "default": ""
-          },
-          "communityDevelopment": {
-            "type": "string",
-            "default": ""
-          },
-          "draftSouvenierSuggestions": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "description"
-              ],
-              "properties": {
-                "id": {
+              },
+              "legacyProject": {
+                "type": "string"
+              },
+              "communityDevelopment": {
+                "type": "string"
+              },
+              "draftSouvenierSuggestions": {
+                "type": "array",
+                "items": {
                   "type": "string"
-                },
-                "draftSubmission": {
-                  "type": "string"
-                },
-                "description": {
+                }
+              },
+              "draftListOfEventSuggestions": {
+                "type": "array",
+                "items": {
                   "type": "string"
                 }
               }
             }
           },
-          "draftListOfEventSuggestions": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "draftSubmission": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                }
-              }
-            }
+          "description": {
+            "type": "string",
+            "default": ""
           }
         }
       },
-      "NewDraftsubmission": {
-        "required": [
-          "nameOfSet"
-        ],
+      "NewDraftlistofeventsuggestion": {
         "properties": {
-          "draftUser": {
+          "draftSubmission": {
             "type": "string"
           },
-          "nameOfSet": {
-            "type": "string",
-            "default": "",
-            "minLength": 2
-          },
-          "nameOfSetInspiration": {
+          "description": {
             "type": "string",
             "default": ""
-          },
-          "legacyProject": {
-            "type": "string",
-            "default": ""
-          },
-          "communityDevelopment": {
-            "type": "string",
-            "default": ""
-          },
-          "draftSouvenierSuggestions": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "draftListOfEventSuggestions": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
           }
         }
       }
@@ -619,7 +555,7 @@
   },
   "tags": [
     {
-      "name": "Draftsubmission"
+      "name": "Draftlistofeventsuggestion"
     }
   ]
 }

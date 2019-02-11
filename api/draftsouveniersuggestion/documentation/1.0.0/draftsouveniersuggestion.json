@@ -526,6 +526,12 @@
                 "items": {
                   "type": "string"
                 }
+              },
+              "draftListOfEventSuggestions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               }
             }
           },

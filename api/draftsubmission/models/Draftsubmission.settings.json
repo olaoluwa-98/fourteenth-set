@@ -36,6 +36,10 @@
     "draftSouvenierSuggestions": {
       "collection": "draftsouveniersuggestion",
       "via": "draftSubmission"
+    },
+    "draftListOfEventSuggestions": {
+      "collection": "draftlistofeventsuggestion",
+      "via": "draftSubmission"
     }
   }
 }
