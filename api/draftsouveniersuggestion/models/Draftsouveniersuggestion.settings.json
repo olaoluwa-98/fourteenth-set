@@ -1,0 +1,23 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "draftsouveniersuggestion",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "draftSubmission": {
+      "model": "draftsubmission",
+      "via": "draftSouvenierSuggestions"
+    },
+    "description": {
+      "default": "",
+      "minLength": 1,
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/draftsubmissions": {
+    "/draftsouveniersuggestions": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -12,7 +12,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Draftsubmission"
+                    "$ref": "#/components/schemas/Draftsouveniersuggestion"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Draftsubmission"
+          "Draftsouveniersuggestion"
         ],
         "parameters": [
           {
@@ -175,7 +175,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Draftsubmission"
+                  "$ref": "#/components/schemas/Draftsouveniersuggestion"
                 }
               }
             }
@@ -213,7 +213,7 @@
         },
         "summary": "",
         "tags": [
-          "Draftsubmission"
+          "Draftsouveniersuggestion"
         ],
         "requestBody": {
           "description": "",
@@ -221,14 +221,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewDraftsubmission"
+                "$ref": "#/components/schemas/NewDraftsouveniersuggestion"
               }
             }
           }
         }
       }
     },
-    "/draftsubmissions/count": {
+    "/draftsouveniersuggestions/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -280,12 +280,12 @@
         },
         "summary": "",
         "tags": [
-          "Draftsubmission"
+          "Draftsouveniersuggestion"
         ],
         "parameters": []
       }
     },
-    "/draftsubmissions/{_id}": {
+    "/draftsouveniersuggestions/{_id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -295,7 +295,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Draftsubmission"
+                  "$ref": "#/components/schemas/Draftsouveniersuggestion"
                 }
               }
             }
@@ -333,7 +333,7 @@
         },
         "summary": "",
         "tags": [
-          "Draftsubmission"
+          "Draftsouveniersuggestion"
         ],
         "parameters": [
           {
@@ -357,7 +357,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Draftsubmission"
+                  "$ref": "#/components/schemas/Draftsouveniersuggestion"
                 }
               }
             }
@@ -395,7 +395,7 @@
         },
         "summary": "",
         "tags": [
-          "Draftsubmission"
+          "Draftsouveniersuggestion"
         ],
         "requestBody": {
           "description": "",
@@ -403,7 +403,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewDraftsubmission"
+                "$ref": "#/components/schemas/NewDraftsouveniersuggestion"
               }
             }
           }
@@ -469,7 +469,7 @@
         },
         "summary": "",
         "tags": [
-          "Draftsubmission"
+          "Draftsouveniersuggestion"
         ],
         "parameters": [
           {
@@ -488,105 +488,66 @@
   },
   "components": {
     "schemas": {
-      "Draftsubmission": {
+      "Draftsouveniersuggestion": {
         "required": [
           "id",
-          "nameOfSet"
+          "description"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "draftUser": {
+          "draftSubmission": {
             "required": [
               "id",
-              "email",
-              "matric_no"
+              "nameOfSet"
             ],
             "properties": {
               "id": {
                 "type": "string"
               },
-              "email": {
+              "draftUser": {
                 "type": "string"
               },
-              "matric_no": {
+              "nameOfSet": {
                 "type": "string"
               },
-              "draftSubmission": {
+              "nameOfSetInspiration": {
                 "type": "string"
-              }
-            }
-          },
-          "nameOfSet": {
-            "type": "string",
-            "default": "",
-            "minLength": 2
-          },
-          "nameOfSetInspiration": {
-            "type": "string",
-            "default": ""
-          },
-          "legacyProject": {
-            "type": "string",
-            "default": ""
-          },
-          "communityDevelopment": {
-            "type": "string",
-            "default": ""
-          },
-          "draftSouvenierSuggestions": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "description"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "draftSubmission": {
-                  "type": "string"
-                },
-                "description": {
+              },
+              "legacyProject": {
+                "type": "string"
+              },
+              "communityDevelopment": {
+                "type": "string"
+              },
+              "draftSouvenierSuggestions": {
+                "type": "array",
+                "items": {
                   "type": "string"
                 }
               }
             }
+          },
+          "description": {
+            "type": "string",
+            "default": "",
+            "minLength": 1
           }
         }
       },
-      "NewDraftsubmission": {
+      "NewDraftsouveniersuggestion": {
         "required": [
-          "nameOfSet"
+          "description"
         ],
         "properties": {
-          "draftUser": {
+          "draftSubmission": {
             "type": "string"
           },
-          "nameOfSet": {
+          "description": {
             "type": "string",
             "default": "",
-            "minLength": 2
-          },
-          "nameOfSetInspiration": {
-            "type": "string",
-            "default": ""
-          },
-          "legacyProject": {
-            "type": "string",
-            "default": ""
-          },
-          "communityDevelopment": {
-            "type": "string",
-            "default": ""
-          },
-          "draftSouvenierSuggestions": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+            "minLength": 1
           }
         }
       }
@@ -594,7 +555,7 @@
   },
   "tags": [
     {
-      "name": "Draftsubmission"
+      "name": "Draftsouveniersuggestion"
     }
   ]
 }

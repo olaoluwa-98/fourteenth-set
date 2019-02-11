@@ -531,6 +531,12 @@
               },
               "communityDevelopment": {
                 "type": "string"
+              },
+              "draftSouvenierSuggestions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               }
             }
           }

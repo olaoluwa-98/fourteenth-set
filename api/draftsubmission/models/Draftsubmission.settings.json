@@ -32,6 +32,10 @@
     "communityDevelopment": {
       "default": "",
       "type": "string"
+    },
+    "draftSouvenierSuggestions": {
+      "collection": "draftsouveniersuggestion",
+      "via": "draftSubmission"
     }
   }
 }

@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/draftsouveniersuggestions",
+      "handler": "Draftsouveniersuggestion.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/draftsouveniersuggestions/count",
+      "handler": "Draftsouveniersuggestion.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/draftsouveniersuggestions/:_id",
+      "handler": "Draftsouveniersuggestion.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/draftsouveniersuggestions",
+      "handler": "Draftsouveniersuggestion.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/draftsouveniersuggestions/:_id",
+      "handler": "Draftsouveniersuggestion.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/draftsouveniersuggestions/:_id",
+      "handler": "Draftsouveniersuggestion.destroy",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
