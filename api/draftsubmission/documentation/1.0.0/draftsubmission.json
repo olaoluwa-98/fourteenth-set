@@ -501,7 +501,7 @@
             "required": [
               "id",
               "email",
-              "matric_no"
+              "matricNumber"
             ],
             "properties": {
               "id": {
@@ -510,7 +510,7 @@
               "email": {
                 "type": "string"
               },
-              "matric_no": {
+              "matricNumber": {
                 "type": "string"
               },
               "draftSubmission": {

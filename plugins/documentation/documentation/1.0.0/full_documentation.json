@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "02/11/2019 4:45:21 AM"
+    "x-generation-date": "02/11/2019 4:50:54 AM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -4145,7 +4145,7 @@
             "required": [
               "id",
               "email",
-              "matric_no"
+              "matricNumber"
             ],
             "properties": {
               "id": {
@@ -4154,7 +4154,7 @@
               "email": {
                 "type": "string"
               },
-              "matric_no": {
+              "matricNumber": {
                 "type": "string"
               },
               "draftSubmission": {
@@ -4263,7 +4263,7 @@
         "required": [
           "id",
           "email",
-          "matric_no"
+          "matricNumber"
         ],
         "properties": {
           "id": {
@@ -4274,7 +4274,7 @@
             "default": "",
             "minLength": 5
           },
-          "matric_no": {
+          "matricNumber": {
             "type": "string",
             "default": "",
             "minLength": 8
@@ -4322,7 +4322,7 @@
       "NewDraftsubmissionuser": {
         "required": [
           "email",
-          "matric_no"
+          "matricNumber"
         ],
         "properties": {
           "email": {
@@ -4330,7 +4330,7 @@
             "default": "",
             "minLength": 5
           },
-          "matric_no": {
+          "matricNumber": {
             "type": "string",
             "default": "",
             "minLength": 8

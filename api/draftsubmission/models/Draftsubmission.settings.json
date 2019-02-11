@@ -10,7 +10,6 @@
   },
   "attributes": {
     "draftUser": {
-      "unique": true,
       "model": "draftsubmissionuser",
       "via": "draftSubmission"
     },
