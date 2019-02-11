@@ -73,14 +73,9 @@ module.exports = {
     const relations = _.pick(values, Draftsubmissionuser.associations.map(ast => ast.alias));
     const data = _.omit(values, Draftsubmissionuser.associations.map(ast => ast.alias));
 
-    // This is a temporary hack to ensure that user doesn't make more than one submission.
+    // This is a temporary hack to ensure that user submission field is required.
     if (Object.keys(relations).indexOf("draftSubmission") < 0) {
-      return String("draftSubmission is missing.");
-    }
-
-    const subs = await strapi.models.draftsubmission.find({ _id: relations.draftSubmission });
-    if (subs.length > 0) {
-      return String("The draftSubmission already exists.");
+      return String("Field `draftSubmission` is missing.");
     }
 
     // Create entry with no-relational data.
