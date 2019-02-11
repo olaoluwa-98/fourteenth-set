@@ -11,7 +11,8 @@
   "attributes": {
     "draftSubmission": {
       "model": "draftsubmission",
-      "via": "draftSouvenierSuggestions"
+      "via": "draftSouvenierSuggestions",
+      "columnName": ""
     },
     "description": {
       "default": "",

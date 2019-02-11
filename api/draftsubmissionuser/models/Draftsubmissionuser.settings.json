@@ -25,7 +25,8 @@
     },
     "draftSubmission": {
       "model": "draftsubmission",
-      "via": "draftUser"
+      "via": "draftUser",
+      "columnName": ""
     }
   }
 }

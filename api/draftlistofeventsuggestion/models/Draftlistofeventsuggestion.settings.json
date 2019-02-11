@@ -11,7 +11,8 @@
   "attributes": {
     "draftSubmission": {
       "model": "draftsubmission",
-      "via": "draftListOfEventSuggestions"
+      "via": "draftListOfEventSuggestions",
+      "columnName": ""
     },
     "description": {
       "default": "",
