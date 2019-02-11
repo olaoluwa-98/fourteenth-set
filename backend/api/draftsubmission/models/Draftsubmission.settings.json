@@ -1,0 +1,42 @@
+{
+  "connection": "default",
+  "collectionName": "DraftSubmission",
+  "info": {
+    "name": "draftsubmission",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "nameOfSet": {
+      "default": "",
+      "unique": true,
+      "minLength": 2,
+      "type": "string",
+      "required": true
+    },
+    "nameOfSetInspiration": {
+      "default": "",
+      "type": "string"
+    },
+    "legacyProject": {
+      "default": "",
+      "type": "string"
+    },
+    "communityDevelopment": {
+      "default": "",
+      "type": "string"
+    },
+    "draftSouvenierSuggestions": {
+      "collection": "draftsouveniersuggestion",
+      "via": "draftSubmission",
+      "columnName": ""
+    },
+    "draftListOfEventSuggestions": {
+      "collection": "draftlistofeventsuggestion",
+      "via": "draftSubmission",
+      "columnName": ""
+    }
+  }
+}
