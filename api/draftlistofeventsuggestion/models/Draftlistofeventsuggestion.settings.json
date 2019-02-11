@@ -1,6 +1,6 @@
 {
   "connection": "default",
-  "collectionName": "",
+  "collectionName": "DraftListOfEventSuggestion",
   "info": {
     "name": "draftlistofeventsuggestion",
     "description": ""
@@ -10,9 +10,9 @@
   },
   "attributes": {
     "draftSubmission": {
+      "columnName": "",
       "model": "draftsubmission",
-      "via": "draftListOfEventSuggestions",
-      "columnName": ""
+      "via": "draftListOfEventSuggestions"
     },
     "description": {
       "default": "",

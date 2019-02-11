@@ -39,7 +39,8 @@
     },
     "draftListOfEventSuggestions": {
       "collection": "draftlistofeventsuggestion",
-      "via": "draftSubmission"
+      "via": "draftSubmission",
+      "columnName": ""
     }
   }
 }
