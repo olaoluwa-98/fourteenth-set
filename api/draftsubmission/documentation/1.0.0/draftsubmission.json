@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/draftsubmissionusers": {
+    "/draftsubmissions": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -12,7 +12,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Draftsubmissionuser"
+                    "$ref": "#/components/schemas/Draftsubmission"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Draftsubmissionuser"
+          "Draftsubmission"
         ],
         "parameters": [
           {
@@ -175,7 +175,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Draftsubmissionuser"
+                  "$ref": "#/components/schemas/Draftsubmission"
                 }
               }
             }
@@ -213,7 +213,7 @@
         },
         "summary": "",
         "tags": [
-          "Draftsubmissionuser"
+          "Draftsubmission"
         ],
         "requestBody": {
           "description": "",
@@ -221,14 +221,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewDraftsubmissionuser"
+                "$ref": "#/components/schemas/NewDraftsubmission"
               }
             }
           }
         }
       }
     },
-    "/draftsubmissionusers/count": {
+    "/draftsubmissions/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -280,12 +280,12 @@
         },
         "summary": "",
         "tags": [
-          "Draftsubmissionuser"
+          "Draftsubmission"
         ],
         "parameters": []
       }
     },
-    "/draftsubmissionusers/{_id}": {
+    "/draftsubmissions/{_id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -295,7 +295,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Draftsubmissionuser"
+                  "$ref": "#/components/schemas/Draftsubmission"
                 }
               }
             }
@@ -333,7 +333,7 @@
         },
         "summary": "",
         "tags": [
-          "Draftsubmissionuser"
+          "Draftsubmission"
         ],
         "parameters": [
           {
@@ -357,7 +357,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Draftsubmissionuser"
+                  "$ref": "#/components/schemas/Draftsubmission"
                 }
               }
             }
@@ -395,7 +395,7 @@
         },
         "summary": "",
         "tags": [
-          "Draftsubmissionuser"
+          "Draftsubmission"
         ],
         "requestBody": {
           "description": "",
@@ -403,7 +403,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewDraftsubmissionuser"
+                "$ref": "#/components/schemas/NewDraftsubmission"
               }
             }
           }
@@ -469,7 +469,7 @@
         },
         "summary": "",
         "tags": [
-          "Draftsubmissionuser"
+          "Draftsubmission"
         ],
         "parameters": [
           {
@@ -488,72 +488,79 @@
   },
   "components": {
     "schemas": {
-      "Draftsubmissionuser": {
+      "Draftsubmission": {
         "required": [
           "id",
-          "email",
-          "matric_no"
+          "nameOfSet"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "email": {
-            "type": "string",
-            "default": "",
-            "minLength": 5
-          },
-          "matric_no": {
-            "type": "string",
-            "default": "",
-            "minLength": 8
-          },
-          "draftSubmission": {
+          "draftUser": {
             "required": [
               "id",
-              "nameOfSet"
+              "email",
+              "matric_no"
             ],
             "properties": {
               "id": {
                 "type": "string"
               },
-              "draftUser": {
+              "email": {
                 "type": "string"
               },
-              "nameOfSet": {
+              "matric_no": {
                 "type": "string"
               },
-              "nameOfSetInspiration": {
-                "type": "string"
-              },
-              "legacyProject": {
-                "type": "string"
-              },
-              "communityDevelopment": {
+              "draftSubmission": {
                 "type": "string"
               }
             }
+          },
+          "nameOfSet": {
+            "type": "string",
+            "default": "",
+            "minLength": 2
+          },
+          "nameOfSetInspiration": {
+            "type": "string",
+            "default": ""
+          },
+          "legacyProject": {
+            "type": "string",
+            "default": ""
+          },
+          "communityDevelopment": {
+            "type": "string",
+            "default": ""
           }
         }
       },
-      "NewDraftsubmissionuser": {
+      "NewDraftsubmission": {
         "required": [
-          "email",
-          "matric_no"
+          "nameOfSet"
         ],
         "properties": {
-          "email": {
-            "type": "string",
-            "default": "",
-            "minLength": 5
-          },
-          "matric_no": {
-            "type": "string",
-            "default": "",
-            "minLength": 8
-          },
-          "draftSubmission": {
+          "draftUser": {
             "type": "string"
+          },
+          "nameOfSet": {
+            "type": "string",
+            "default": "",
+            "minLength": 2
+          },
+          "nameOfSetInspiration": {
+            "type": "string",
+            "default": ""
+          },
+          "legacyProject": {
+            "type": "string",
+            "default": ""
+          },
+          "communityDevelopment": {
+            "type": "string",
+            "default": ""
           }
         }
       }
@@ -561,7 +568,7 @@
   },
   "tags": [
     {
-      "name": "Draftsubmissionuser"
+      "name": "Draftsubmission"
     }
   ]
 }
