@@ -9,14 +9,13 @@
     "timestamps": true
   },
   "attributes": {
-    "draftSubmission": {
-      "columnName": "",
-      "model": "draftsubmission",
-      "via": "draftListOfEventSuggestions"
-    },
     "description": {
       "default": "",
       "type": "string"
+    },
+    "draftSubmissions": {
+      "model": "draftsubmission",
+      "via": "draftListOfEventSuggestion"
     }
   }
 }

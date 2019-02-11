@@ -497,10 +497,18 @@
           "id": {
             "type": "string"
           },
-          "draftSubmission": {
+          "description": {
+            "type": "string",
+            "default": "",
+            "minLength": 1
+          },
+          "draftSubmissions": {
             "required": [
               "id",
-              "nameOfSet"
+              "nameOfSet",
+              "nameOfSetInspiration",
+              "legacyProject",
+              "communityDevelopment"
             ],
             "properties": {
               "id": {
@@ -518,24 +526,19 @@
               "communityDevelopment": {
                 "type": "string"
               },
-              "draftSouvenierSuggestions": {
+              "draftListOfEventSuggestion": {
                 "type": "array",
                 "items": {
                   "type": "string"
                 }
               },
-              "draftListOfEventSuggestions": {
+              "draftSouvenierSuggestion": {
                 "type": "array",
                 "items": {
                   "type": "string"
                 }
               }
             }
-          },
-          "description": {
-            "type": "string",
-            "default": "",
-            "minLength": 1
           }
         }
       },
@@ -544,13 +547,13 @@
           "description"
         ],
         "properties": {
-          "draftSubmission": {
-            "type": "string"
-          },
           "description": {
             "type": "string",
             "default": "",
             "minLength": 1
+          },
+          "draftSubmissions": {
+            "type": "string"
           }
         }
       }

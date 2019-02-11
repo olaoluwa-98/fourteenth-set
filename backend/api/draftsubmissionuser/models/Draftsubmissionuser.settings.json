@@ -18,13 +18,14 @@
     },
     "matricNumber": {
       "default": "",
-      "unique": true,
-      "minLength": 8,
       "type": "string",
-      "required": true
+      "required": true,
+      "unique": true
     },
     "draftSubmission": {
-      "model": "draftsubmission"
+      "unique": true,
+      "model": "draftsubmission",
+      "required": true
     }
   }
 }

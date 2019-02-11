@@ -11,32 +11,35 @@
   "attributes": {
     "nameOfSet": {
       "default": "",
-      "unique": true,
       "minLength": 2,
       "type": "string",
       "required": true
     },
     "nameOfSetInspiration": {
       "default": "",
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "minLength": 2
     },
     "legacyProject": {
       "default": "",
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "minLength": 2
     },
     "communityDevelopment": {
       "default": "",
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "minLength": 2
     },
-    "draftSouvenierSuggestions": {
-      "collection": "draftsouveniersuggestion",
-      "via": "draftSubmission",
-      "columnName": ""
-    },
-    "draftListOfEventSuggestions": {
+    "draftListOfEventSuggestion": {
       "collection": "draftlistofeventsuggestion",
-      "via": "draftSubmission",
-      "columnName": ""
+      "via": "draftSubmissions"
+    },
+    "draftSouvenierSuggestion": {
+      "collection": "draftsouveniersuggestion",
+      "via": "draftSubmissions"
     }
   }
 }

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * Draftsubmissionuser.js controller
@@ -7,14 +7,13 @@
  */
 
 module.exports = {
-
   /**
    * Retrieve draftsubmissionuser records.
    *
    * @return {Object|Array}
    */
 
-  find: async (ctx) => {
+  find: async ctx => {
     if (ctx.query._q) {
       return strapi.services.draftsubmissionuser.search(ctx.query);
     } else {
@@ -28,7 +27,7 @@ module.exports = {
    * @return {Object}
    */
 
-  findOne: async (ctx) => {
+  findOne: async ctx => {
     if (!ctx.params._id.match(/^[0-9a-fA-F]{24}$/)) {
       return ctx.notFound();
     }
@@ -42,7 +41,7 @@ module.exports = {
    * @return {Number}
    */
 
-  count: async (ctx) => {
+  count: async ctx => {
     return strapi.services.draftsubmissionuser.count(ctx.query);
   },
 
@@ -52,8 +51,15 @@ module.exports = {
    * @return {Object}
    */
 
-  create: async (ctx) => {
-    return strapi.services.draftsubmissionuser.add(ctx.request.body);
+  create: async ctx => {
+    const item = strapi.services.draftsubmissionuser.add(ctx.request.body);
+
+    // This is a hack
+    if (typeof (await item) == "string") {
+      ctx.response.badRequest(await item);
+    }
+
+    return item;
   },
 
   /**
@@ -63,7 +69,7 @@ module.exports = {
    */
 
   update: async (ctx, next) => {
-    return strapi.services.draftsubmissionuser.edit(ctx.params, ctx.request.body) ;
+    return strapi.services.draftsubmissionuser.edit(ctx.params, ctx.request.body);
   },
 
   /**

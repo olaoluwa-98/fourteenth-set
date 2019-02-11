@@ -9,16 +9,15 @@
     "timestamps": true
   },
   "attributes": {
-    "draftSubmission": {
-      "columnName": "",
-      "model": "draftsubmission",
-      "via": "draftSouvenierSuggestions"
-    },
     "description": {
       "default": "",
       "minLength": 1,
       "type": "string",
       "required": true
+    },
+    "draftSubmissions": {
+      "model": "draftsubmission",
+      "via": "draftSouvenierSuggestion"
     }
   }
 }

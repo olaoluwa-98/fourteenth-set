@@ -492,7 +492,8 @@
         "required": [
           "id",
           "email",
-          "matricNumber"
+          "matricNumber",
+          "draftSubmission"
         ],
         "properties": {
           "id": {
@@ -505,13 +506,15 @@
           },
           "matricNumber": {
             "type": "string",
-            "default": "",
-            "minLength": 8
+            "default": ""
           },
           "draftSubmission": {
             "required": [
               "id",
-              "nameOfSet"
+              "nameOfSet",
+              "nameOfSetInspiration",
+              "legacyProject",
+              "communityDevelopment"
             ],
             "properties": {
               "id": {
@@ -529,13 +532,13 @@
               "communityDevelopment": {
                 "type": "string"
               },
-              "draftSouvenierSuggestions": {
+              "draftListOfEventSuggestion": {
                 "type": "array",
                 "items": {
                   "type": "string"
                 }
               },
-              "draftListOfEventSuggestions": {
+              "draftSouvenierSuggestion": {
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -548,7 +551,8 @@
       "NewDraftsubmissionuser": {
         "required": [
           "email",
-          "matricNumber"
+          "matricNumber",
+          "draftSubmission"
         ],
         "properties": {
           "email": {
@@ -558,8 +562,7 @@
           },
           "matricNumber": {
             "type": "string",
-            "default": "",
-            "minLength": 8
+            "default": ""
           },
           "draftSubmission": {
             "type": "string"

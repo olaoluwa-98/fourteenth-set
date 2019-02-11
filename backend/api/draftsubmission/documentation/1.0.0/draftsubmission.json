@@ -491,7 +491,10 @@
       "Draftsubmission": {
         "required": [
           "id",
-          "nameOfSet"
+          "nameOfSet",
+          "nameOfSetInspiration",
+          "legacyProject",
+          "communityDevelopment"
         ],
         "properties": {
           "id": {
@@ -504,17 +507,39 @@
           },
           "nameOfSetInspiration": {
             "type": "string",
-            "default": ""
+            "default": "",
+            "minLength": 2
           },
           "legacyProject": {
             "type": "string",
-            "default": ""
+            "default": "",
+            "minLength": 2
           },
           "communityDevelopment": {
             "type": "string",
-            "default": ""
+            "default": "",
+            "minLength": 2
           },
-          "draftSouvenierSuggestions": {
+          "draftListOfEventSuggestion": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "draftSubmissions": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "draftSouvenierSuggestion": {
             "type": "array",
             "items": {
               "required": [
@@ -525,29 +550,10 @@
                 "id": {
                   "type": "string"
                 },
-                "draftSubmission": {
-                  "type": "string"
-                },
                 "description": {
                   "type": "string"
-                }
-              }
-            }
-          },
-          "draftListOfEventSuggestions": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
                 },
-                "draftSubmission": {
-                  "type": "string"
-                },
-                "description": {
+                "draftSubmissions": {
                   "type": "string"
                 }
               }
@@ -557,7 +563,10 @@
       },
       "NewDraftsubmission": {
         "required": [
-          "nameOfSet"
+          "nameOfSet",
+          "nameOfSetInspiration",
+          "legacyProject",
+          "communityDevelopment"
         ],
         "properties": {
           "nameOfSet": {
@@ -567,23 +576,26 @@
           },
           "nameOfSetInspiration": {
             "type": "string",
-            "default": ""
+            "default": "",
+            "minLength": 2
           },
           "legacyProject": {
             "type": "string",
-            "default": ""
+            "default": "",
+            "minLength": 2
           },
           "communityDevelopment": {
             "type": "string",
-            "default": ""
+            "default": "",
+            "minLength": 2
           },
-          "draftSouvenierSuggestions": {
+          "draftListOfEventSuggestion": {
             "type": "array",
             "items": {
               "type": "string"
             }
           },
-          "draftListOfEventSuggestions": {
+          "draftSouvenierSuggestion": {
             "type": "array",
             "items": {
               "type": "string"
