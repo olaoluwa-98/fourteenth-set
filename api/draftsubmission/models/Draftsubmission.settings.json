@@ -34,7 +34,8 @@
     },
     "draftSouvenierSuggestions": {
       "collection": "draftsouveniersuggestion",
-      "via": "draftSubmission"
+      "via": "draftSubmission",
+      "columnName": ""
     },
     "draftListOfEventSuggestions": {
       "collection": "draftlistofeventsuggestion",

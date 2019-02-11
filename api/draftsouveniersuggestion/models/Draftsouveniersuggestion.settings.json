@@ -1,6 +1,6 @@
 {
   "connection": "default",
-  "collectionName": "",
+  "collectionName": "DraftSouvenierSuggestion",
   "info": {
     "name": "draftsouveniersuggestion",
     "description": ""
@@ -10,9 +10,9 @@
   },
   "attributes": {
     "draftSubmission": {
+      "columnName": "",
       "model": "draftsubmission",
-      "via": "draftSouvenierSuggestions",
-      "columnName": ""
+      "via": "draftSouvenierSuggestions"
     },
     "description": {
       "default": "",
