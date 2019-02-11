@@ -7,7 +7,7 @@ services:
       - ./frontend:/usr/src/app
       - /usr/src/app/nod_modules
     env_file:
-      - ./frontend/env
+      - ./frontend/.env
     ports:
       - 80:80
 
@@ -15,7 +15,7 @@ services:
     build: backend
     image: strapi/strapi
     env_file:
-      - ./backend/env
+      - ./backend/.env
     ports:
       - 1337:1337
     volumes:
