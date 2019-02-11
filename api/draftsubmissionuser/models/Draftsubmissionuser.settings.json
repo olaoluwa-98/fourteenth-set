@@ -1,0 +1,27 @@
+{
+  "connection": "default",
+  "collectionName": "DraftSubmissionUser",
+  "info": {
+    "name": "draftsubmissionuser",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "email": {
+      "default": "",
+      "unique": true,
+      "minLength": 5,
+      "type": "email",
+      "required": true
+    },
+    "matric_no": {
+      "default": "",
+      "unique": true,
+      "minLength": 8,
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/draftsubmissionusers",
+      "handler": "Draftsubmissionuser.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/draftsubmissionusers/count",
+      "handler": "Draftsubmissionuser.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/draftsubmissionusers/:_id",
+      "handler": "Draftsubmissionuser.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/draftsubmissionusers",
+      "handler": "Draftsubmissionuser.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/draftsubmissionusers/:_id",
+      "handler": "Draftsubmissionuser.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/draftsubmissionusers/:_id",
+      "handler": "Draftsubmissionuser.destroy",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
