@@ -30,7 +30,7 @@ services:
     environment:
       - MONGO_INITDB_DATABASE=strapi
     ports:
-      - 27017:27017
+      - 27018:27017
     volumes:
       - ./db:/data/db
     restart: always
