@@ -18,8 +18,8 @@ class Home extends React.PureComponent {
             Lets fill our convocation experience with things that matter
           </Typography>{" "}
           <br />
-          <Button variant='contained' className='button-purple' size='large' href='form' style={{ padding: 15 }}>
-            Make Suggestions
+          <Button variant='contained' className='button-purple' size='large' style={{ padding: 15 }}>
+            🎓 Coming Soon
           </Button>
         </Grid>
       </React.Fragment>
