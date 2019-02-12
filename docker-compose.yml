@@ -6,7 +6,7 @@ services:
     volumes:
       - ./frontend:/usr/src/app
       - /usr/src/app/nod_modules
-    enviroment:
+    environment:
       - NODE_ENV=production
       - CHOKIDAR_USEPOLLING=true
       - BASE_URL=backend
@@ -17,7 +17,7 @@ services:
   backend:
     build: backend
     image: strapi/strapi
-    enviroment:
+    environment:
       - APP_NAME=strapi-app
       - DATABASE_CLIENT=mongo
       - DATABASE_HOST=db
