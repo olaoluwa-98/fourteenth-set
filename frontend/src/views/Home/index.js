@@ -19,8 +19,16 @@ class Home extends React.PureComponent {
           </Typography>{" "}
           <br />
           <Button variant='contained' className='button-purple' size='large' style={{ padding: 15 }}>
-            🎓 Coming Soon
+            <span role='img' aria-label='graduation'>
+              🎓
+            </span>{" "}
+            Coming Soon
           </Button>
+          <br />
+          <br />
+          <em>
+            <small>Suggestion window open Wednesday 12 pm - Saturday 11:59pm</small>
+          </em>
         </Grid>
       </React.Fragment>
     );
