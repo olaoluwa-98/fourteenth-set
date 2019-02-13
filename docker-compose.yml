@@ -1,36 +1,72 @@
-version: "3"
+version: '3'
+
+volumes:
+  postgres_data: {}
+  postgres_backup: {}
+  django_static: {}
+  django_media: {}
 
 services:
-  frontend:
-    build: frontend
+  django: &django
+    build:
+      context: ./backend
+      dockerfile: compose/production/django/Dockerfile
+    image: the14thset_production_django
     volumes:
-      - ./frontend:/usr/src/app
-      - /usr/src/app/nod_modules
-    env_file:
-      - ./frontend/.env
-    ports:
-      - 80:80
-
-  backend:
-    build: backend
-    image: strapi/strapi
-    env_file:
-      - ./backend/.env
-    ports:
-      - 1337:1337
-    volumes:
-      - ./backend:/usr/src/api/strapi-app
-      # - /usr/src/api/strapi-app/node_modules
+      - django_static:/var/the14thset_static
+      - django_media:/var/the14thset_media
     depends_on:
-      - db
-    restart: always
+      - postgres
+    env_file:
+      - ./backend/.envs/.production/.django
+      - ./backend/.envs/.production/.postgres
+    command: /start
 
-  db:
-    image: mongo
-    environment:
-      - MONGO_INITDB_DATABASE=strapi
-    ports:
-      - 27018:27017
+  postgres:
+    build:
+      context: ./backend
+      dockerfile: compose/production/postgres/Dockerfile
+    image: the14thset_production_postgres
     volumes:
-      - ./db:/data/db
-    restart: always
+      - postgres_data:/var/lib/postgresql/data
+      - postgres_backup:/backups
+    env_file:
+      - ./backend/.envs/.production/.postgres
+    ports:
+      - "0.0.0.0:5432:5432"
+
+  nginx:
+    build:
+      context: ./
+      dockerfile: ./backend/compose/production/nginx/Dockerfile
+    image: the14thset_production_nginx
+    depends_on:
+      - django
+    volumes:
+      - django_static:/var/the14thset_static
+      - django_media:/var/the14thset_media
+      - /docker-volumes/data/letsencrypt:/data/letsencrypt
+      - /docker-volumes/etc/letsencrypt/live/the14thset.covenantuniversity.edu.ng/fullchain.pem:/etc/letsencrypt/live/the14thset.covenantuniversity.edu.ng/fullchain.pem
+      - /docker-volumes/etc/letsencrypt/live/the14thset.covenantuniversity.edu.ng/privkey.pem:/etc/letsencrypt/live/the14thset.covenantuniversity.edu.ng/privkey.pem
+    environment:
+      - REACT_APP_API_DOMAIN_NAME=https://the14thset.covenantuniversity.edu.ng
+      - NODE_ENV=production
+    ports:
+      - "0.0.0.0:80:80"
+      - "0.0.0.0:443:443"
+
+  redis:
+    image: redis:3.2
+    volumes:
+    - /var/lib/redis
+    - /var/log/redis/
+
+  celeryworker:
+    <<: *django
+    image: the14thset_production_celeryworker
+    command: /start-celeryworker
+
+  celerybeat:
+    <<: *django
+    image: the14thset_production_celerybeat
+    command: /start-celerybeat

@@ -65,11 +65,12 @@ header {
 }
 
 .flex-column-center {
-  width: 500px;
+  /* width: 500px; */
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
+  /* text-align: center */
 }
 
 .bold {

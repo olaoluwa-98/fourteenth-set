@@ -1,7 +1,9 @@
 import React from "react";
 import { Typography, Grid, Button, CssBaseline } from "@material-ui/core";
-
+import { Link } from "react-router-dom";
 import Header from "../../components/Header";
+
+
 class Home extends React.PureComponent {
   render() {
     return (
@@ -18,9 +20,18 @@ class Home extends React.PureComponent {
             Lets fill our convocation experience with things that matter
           </Typography>{" "}
           <br />
-          <Button variant='contained' className='button-purple' size='large' href='form' style={{ padding: 15 }}>
+          <Link to={"/make-suggestion"}>
+          <Button variant='contained' className='button-purple' size='large' style={{ padding: 15 }}>
+            <span role='img' aria-label='graduation'>
+            </span>
             Make Suggestions
           </Button>
+          </Link>
+          <br />
+          <br />
+          <em>
+            <small>Suggestion window open till Saturday 11:59pm</small>
+          </em>
         </Grid>
       </React.Fragment>
     );

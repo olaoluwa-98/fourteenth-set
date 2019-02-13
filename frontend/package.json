@@ -2,6 +2,7 @@
   "name": "14th-set",
   "version": "0.1.0",
   "private": true,
+  "homepage" : "http://the14thset.covenantuniversity.edu.ng",
   "dependencies": {
     "@material-ui/core": "^3.9.2",
     "prop-types": "^15.6.2",
@@ -11,8 +12,8 @@
     "react-scripts": "2.1.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "REACT_APP_API_DOMAIN_NAME=http://localhost:8000 react-scripts start",
+    "build": "REACT_APP_API_DOMAIN_NAME=$(printenv REACT_APP_API_DOMAIN_NAME) react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

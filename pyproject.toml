@@ -1,0 +1,13 @@
+[tool.black]
+line-length = 79
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.mypy_cache
+  | \.venv
+  | \.backend\venv
+  | \.backend\venv-linux
+  | \.venv-linux
+)/
+'''
