@@ -9,7 +9,7 @@ The `backend` is built with `django` while the `frontend` is built with `React.j
 # Setup
 For the backend, you need to have following setup on your local machine
 
-MySQL server
+Postgres 9.6
 Python 3
 
 

@@ -29,23 +29,57 @@ const styles = theme => ({
 });
 
 function getSteps() {
-  return ["Step 1", "Step 2", "Step 3", "Step 4"];
+  return ["Step 1", "Step 2", "Step 3", "Step 4","Step 5"];
 }
 
 class Form extends React.Component {
   state = {
     activeStep: 0,
-    name: "",
-    setName: "",
-    setNameReason: "",
-    communityProject: "",
-    souvenirs: ""
+    user_name: "",
+    matric_no: "",
+    user_email: "",
+    set_name: "",
+    set_name_reason: "",
+    community_projects: "",
+    souvenirs: "",
+    events: ""
   };
 
+  postData(url = ``, data = {}) {
+      return fetch(url, {
+          method: "post",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data)
+      })
+      .then(response => response.json());
+  }
+
   handleNext = () => {
-    this.setState(state => ({
+    if (this.state.activeStep === getSteps().length - 1) {
+      this.postData(process.env.REACT_APP_API_DOMAIN_NAME + '/api/suggestion',
+      {
+        user_name: this.state.user_name,
+        matric_no: this.state.matric_no, user_email: this.state.user_email,
+        set_name: this.state.set_name, set_name_reason: this.state.set_name_reason,
+        community_projects: this.state.community_projects, souvenirs: this.state.souvenirs,
+        events: this.state.events
+      })
+      .then(data => {
+        // console.log(JSON.stringify(data));
+        let func = this.props.history;
+        window.setTimeout(function(){
+          func.push('/last');
+        }, 1000);
+        })
+      .catch(error => console.error(error));
+    } else 
+    {
+      this.setState(state => ({
       activeStep: state.activeStep + 1
     }));
+   }
   };
 
   handleBack = () => {
@@ -60,33 +94,49 @@ class Form extends React.Component {
     });
   };
 
-  handleNameChange = name => event => {
+  handleUserNameChange = user_name => event => {
     this.setState({
-      [name]: event.target.value
+      [user_name]: event.target.value
+    });
+  };
+  handleMatricNoChange = matric_no => event => {
+    this.setState({
+      [matric_no]: event.target.value
+    });
+  };
+  handleUserEmailChange = user_email => event => {
+    this.setState({
+      [user_email]: event.target.value
     });
   };
 
-  handleSetNameChange = setName => event => {
+  handleSetNameChange = set_name => event => {
     this.setState({
-      [setName]: event.target.value
+      [set_name]: event.target.value
     });
   };
 
-  handleSetNameReasonChange = setNameReason => event => {
+  handleSetNameReasonChange = set_name_reason => event => {
     this.setState({
-      [setNameReason]: event.target.value
+      [set_name_reason]: event.target.value
     });
   };
 
-  handleCommunityProjectChange = communityProject => event => {
+  handleCommunityProjectChange = community_projects => event => {
     this.setState({
-      [communityProject]: event.target.value
+      [community_projects]: event.target.value
     });
   };
 
   handleSouvenirChange = souvenirs => event => {
     this.setState({
       [souvenirs]: event.target.value
+    });
+  };
+
+  handleEventChange = events => event => {
+    this.setState({
+      [events]: event.target.value
     });
   };
 
@@ -127,8 +177,26 @@ class Form extends React.Component {
                     <TextField
                       id='outlined-name'
                       label='Your Name'
-                      value={this.state.name}
-                      onChange={this.handleNameChange("name")}
+                      value={this.state.user_name}
+                      onChange={this.handleUserNameChange("user_name")}
+                      margin='normal'
+                      variant='outlined'
+                      fullWidth
+                    />
+                    <TextField
+                      id='outlined-name'
+                      label='Your Matric Number'
+                      value={this.state.matric_no}
+                      onChange={this.handleMatricNoChange("matric_no")}
+                      margin='normal'
+                      variant='outlined'
+                      fullWidth
+                    />
+                    <TextField
+                      id='outlined-name'
+                      label='Your Email'
+                      value={this.state.user_email}
+                      onChange={this.handleUserEmailChange("user_email")}
                       margin='normal'
                       variant='outlined'
                       fullWidth
@@ -142,14 +210,14 @@ class Form extends React.Component {
                       Hello {this.state.name}!
                     </Typography>
                     <Typography variant='subheading' color='inherit'>
-                      what should we name our set?
+                      What should we name our set?
                     </Typography>
 
                     <TextField
                       id='outlined-name'
                       label='Set name suggestion'
-                      value={this.state.setName}
-                      onChange={this.handleSetNameChange("setName")}
+                      value={this.state.set_name}
+                      onChange={this.handleSetNameChange("set_name")}
                       margin='normal'
                       variant='outlined'
                       fullWidth
@@ -157,8 +225,8 @@ class Form extends React.Component {
                     <TextField
                       id='outlined-name'
                       label='Reason for your choice?'
-                      value={this.state.setNameReason}
-                      onChange={this.handleSetNameReasonChange("setNameReason")}
+                      value={this.state.set_name_reason}
+                      onChange={this.handleSetNameReasonChange("set_name_reason")}
                       margin='normal'
                       variant='outlined'
                       fullWidth
@@ -178,8 +246,8 @@ class Form extends React.Component {
                     <TextField
                       id='outlined-name'
                       label='How do you suggest we give back to the community?'
-                      value={this.state.communityProject}
-                      onChange={this.handleCommunityProjectChange("communityProject")}
+                      value={this.state.community_projects}
+                      onChange={this.handleCommunityProjectChange("community_projects")}
                       margin='normal'
                       variant='outlined'
                       fullWidth
@@ -201,6 +269,23 @@ class Form extends React.Component {
                       label='What souvenirs would you love to see?'
                       value={this.state.souvenirs}
                       onChange={this.handleSouvenirChange("souvenirs")}
+                      margin='normal'
+                      variant='outlined'
+                      fullWidth
+                    />
+                  </div>
+                )}
+
+                {activeStep === 4 && (
+                  <div className='flex-column-center'>
+                    <Typography variant='h5' color='white' align='center'>
+                      <b>What events do you want to see?</b>
+                    </Typography>
+                    <TextField
+                      id='outlined-name'
+                      label='What events do you want to see?'
+                      value={this.state.events}
+                      onChange={this.handleEventChange("events")}
                       margin='normal'
                       variant='outlined'
                       fullWidth

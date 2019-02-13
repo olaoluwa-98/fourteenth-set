@@ -1,48 +1,77 @@
-version: "3"
+version: '2'
+
+volumes:
+  postgres_data: {}
+  postgres_backup: {}
+  frontend_build: {}
 
 services:
-  frontend:
-    build: frontend
-    volumes:
-      - ./frontend:/usr/src/app
-      - /usr/src/app/nod_modules
-    environment:
-      - NODE_ENV=production
-      - CHOKIDAR_USEPOLLING=true
-      - BASE_URL=backend
-      - BASE_PORT=1337
-    ports:
-      - 80:80
-
-  backend:
-    build: backend
-    image: strapi/strapi
-    environment:
-      - APP_NAME=strapi-app
-      - DATABASE_CLIENT=mongo
-      - DATABASE_HOST=db
-      - DATABASE_PORT=27017
-      - DATABASE_NAME=strapi
-      - DATABASE_USERNAME=
-      - DATABASE_PASSWORD=
-      - DATABASE_SSL=false
-      - DATABASE_AUTHENTICATION_DATABASE=strapi
-      - HOST=localhost
-    ports:
-      - 1337:1337
-    volumes:
-      - ./backend:/usr/src/api/strapi-app
-      # - /usr/src/api/strapi-app/node_modules
+  django: &django
+    build:
+      context: .
+      dockerfile: ./backend/compose/production/django/Dockerfile
+    image: the14thset_production_django
     depends_on:
-      - db
-    restart: always
-
-  db:
-    image: mongo
-    environment:
-      - MONGO_INITDB_DATABASE=strapi
-    ports:
-      - 27018:27017
+      - postgres
+    env_file:
+      - ./.envs/.production/.django
+      - ./.envs/.production/.postgres
+    command: /start
+  
+  frontend:
+    build:
+      context: .
+      dockerfile: ./frontend/Dockerfile
+    image: the14thset_production_frontend
     volumes:
-      - ./db:/data/db
-    restart: always
+      - frontend_build:/usr/src/app/build
+    environment:
+      - REACT_APP_API_DOMAIN_NAME=https://the14thset.covenantuniversity.edu.ng
+      - NODE_ENV=production
+
+  postgres:
+    build:
+      context: .
+      dockerfile: ./backend/compose/production/postgres/Dockerfile
+    image: the14thset_production_postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - postgres_backup:/backups
+    env_file:
+      - ./.envs/.production/.postgres
+    ports:
+      - "0.0.0.0:5432:5432"
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./backend/compose/production/nginx/Dockerfile
+    image: the14thset_production_nginx
+    depends_on:
+      - frontend
+      - django
+    volumes:
+      - frontend_build:/etc/nginx/html
+      - /docker-volumes/data/letsencrypt:/data/letsencrypt
+      - /docker-volumes/etc/letsencrypt/live/the14thset.com.ng/fullchain.pem:/etc/letsencrypt/live/the14thset.com.ng/fullchain.pem
+      - /docker-volumes/etc/letsencrypt/live/the14thset.com.ng/privkey.pem:/etc/letsencrypt/live/the14thset.com.ng/privkey.pem
+      - ./backend/compose/production/nginx/dhparam-2048.pem:/etc/ssl/certs/dhparam-2048.pem
+    ports:
+      - "0.0.0.0:80:80"
+      - "0.0.0.0:443:443"
+
+  # redis:
+  #   image: redis:3.2
+  #   volumes:
+  #   - /var/lib/redis
+  #   - /var/log/redis/
+
+  # celeryworker:
+  #   <<: *django
+  #   image: the14thset_production_celeryworker
+  #   command: /start-celeryworker
+
+  # celerybeat:
+  #   <<: *django
+  #   image: the14thset_production_celerybeat
+  #   command: /start-celerybeat
