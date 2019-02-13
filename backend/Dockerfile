@@ -1,27 +1,17 @@
-FROM node:11.1.0-alpine
+FROM python:3.6
+ENV PYTHONUNBUFFERED 1
 
-LABEL maintainer="Luca Perret <perret.luca@gmail.com>" \
-  org.label-schema.vendor="Strapi" \
-  org.label-schema.name="Strapi Docker image" \
-  org.label-schema.description="Strapi containerized" \
-  org.label-schema.url="https://strapi.io" \
-  org.label-schema.vcs-url="https://github.com/strapi/strapi-docker" \
-  org.label-schema.version=latest \
-  org.label-schema.schema-version="1.0"
+# Allows docker to cache installed dependencies between builds
+COPY ./requirements.txt requirements.txt
+RUN pip install -r requirements.txt
 
-WORKDIR /usr/src/api
+# Adds our application code to the image
+COPY . code
+WORKDIR code
 
-RUN echo "unsafe-perm = true" >> ~/.npmrc
-RUN npm install -g strapi@3.0.0-alpha.23.1
+EXPOSE 8000
 
-COPY strapi.sh package.json ./
-RUN chmod +x ./strapi.sh
-RUN npm install
-
-EXPOSE 1337
-
-COPY healthcheck.js ./
-HEALTHCHECK --interval=15s --timeout=5s --start-period=30s \
-  CMD node /usr/src/api/healthcheck.js
-
-CMD ["./strapi.sh"]
+# Migrates the database, uploads staticfiles, and runs the production server
+CMD ./manage.py migrate && \
+    ./manage.py collectstatic --noinput && \
+    newrelic-admin run-program gunicorn --bind 0.0.0.0:$PORT --access-logfile - the14thset.wsgi:application
