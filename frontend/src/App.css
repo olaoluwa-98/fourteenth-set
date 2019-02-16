@@ -1,4 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:600");
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Montez');
+@import url('https://fonts.googleapis.com/css?family=Lilita+One');
 
 body,
 h1,
@@ -9,20 +11,32 @@ h5,
 h6,
 p,
 span {
-  font-family: "Open Sans", sans-serif !important;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+a {
+  text-decoration: none;
 }
 
 header {
   box-shadow: none !important;
+  background-color: transparent !important;
 }
-
 .full-desktop-height {
   background: #ffffff;
   height: 100vh;
 }
 
 .text--purple {
-  color: hsl(300, 100%, 25%);
+  color: rgb(127, 0, 127);
+}
+
+.cursive-text {
+  font-family: 'Montez', cursive !important;
+}
+
+.cursive-text-bold {
+  font-family: 'Lilita One', cursive !important;
 }
 
 .center {
@@ -30,7 +44,7 @@ header {
 }
 
 .button-purple {
-  background-color: hsl(300, 100%, 25%) !important;
+  background-color: #7f007f !important;
   color: #ffffff !important;
 }
 
