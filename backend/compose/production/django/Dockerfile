@@ -47,6 +47,10 @@ COPY . /app
 
 RUN chown -R django /app
 
+RUN mkdir -p /var/the14thset_static
+
+RUN chown django /var/the14thset_static
+
 USER django
 
 WORKDIR /app

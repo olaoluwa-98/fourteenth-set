@@ -6,7 +6,8 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
-import logo from "../../assets/img/logo.svg";
+// import Header from "../../components/Header";
+// import logo from "../../assets/img/logo.svg";
 
 const styles = theme => ({
   root: {
@@ -33,17 +34,29 @@ function getSteps() {
 }
 
 class Form extends React.Component {
-  state = {
-    activeStep: 0,
-    user_name: "",
-    matric_no: "",
-    user_email: "",
-    set_name: "",
-    set_name_reason: "",
-    community_projects: "",
-    souvenirs: "",
-    events: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeStep: 0,
+      userName: "",
+      matricNo: "",
+      userEmail: "",
+      setName: "",
+      setNameReason: "",
+      communityProjects: "",
+      souvenirs: "",
+      events: ""
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange = event => {
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState({
+      [name]: value
+    });
+  }
 
   postData(url = ``, data = {}) {
       return fetch(url, {
@@ -56,18 +69,42 @@ class Form extends React.Component {
       .then(response => response.json());
   }
 
+  validateForms = activeStep => {
+    switch (activeStep) {
+      case 0:
+        let { userName, matricNo, userEmail } = this.state;
+        return userName !== "" && matricNo !== "" && userEmail !== "";
+      case 1:
+        let { setName, setNameReason } = this.state;
+        return setName !== "" && setNameReason !== "";
+      case 2:
+        let { communityProjects } = this.state;
+        return communityProjects !== "";
+      case 3:
+        let { souvenirs } = this.state;
+        return souvenirs !== "";
+      case 4:
+        let { events } = this.state;
+        return events !== "";
+      default:
+        return false;
+    }
+  }
+
   handleNext = () => {
     if (this.state.activeStep === getSteps().length - 1) {
+      const { matricNo, userEmail, userName, setName, setNameReason, 
+        communityProjects, souvenirs, events
+       } = this.state;
       this.postData(process.env.REACT_APP_API_DOMAIN_NAME + '/api/suggestion',
       {
-        user_name: this.state.user_name,
-        matric_no: this.state.matric_no, user_email: this.state.user_email,
-        set_name: this.state.set_name, set_name_reason: this.state.set_name_reason,
-        community_projects: this.state.community_projects, souvenirs: this.state.souvenirs,
-        events: this.state.events
+        user_name: userName,
+        matric_no: matricNo, user_email: userEmail,
+        set_name: setName, set_name_reason: setNameReason,
+        community_projects: communityProjects, souvenirs: souvenirs,
+        events: events
       })
       .then(data => {
-        // console.log(JSON.stringify(data));
         let func = this.props.history;
         window.setTimeout(function(){
           func.push('/last');
@@ -94,58 +131,16 @@ class Form extends React.Component {
     });
   };
 
-  handleUserNameChange = user_name => event => {
-    this.setState({
-      [user_name]: event.target.value
-    });
-  };
-  handleMatricNoChange = matric_no => event => {
-    this.setState({
-      [matric_no]: event.target.value
-    });
-  };
-  handleUserEmailChange = user_email => event => {
-    this.setState({
-      [user_email]: event.target.value
-    });
-  };
-
-  handleSetNameChange = set_name => event => {
-    this.setState({
-      [set_name]: event.target.value
-    });
-  };
-
-  handleSetNameReasonChange = set_name_reason => event => {
-    this.setState({
-      [set_name_reason]: event.target.value
-    });
-  };
-
-  handleCommunityProjectChange = community_projects => event => {
-    this.setState({
-      [community_projects]: event.target.value
-    });
-  };
-
-  handleSouvenirChange = souvenirs => event => {
-    this.setState({
-      [souvenirs]: event.target.value
-    });
-  };
-
-  handleEventChange = events => event => {
-    this.setState({
-      [events]: event.target.value
-    });
-  };
-
   render() {
     const { classes } = this.props;
     const steps = getSteps();
-    const { activeStep } = this.state;
+    const { activeStep, matricNo, userEmail, userName, setName, setNameReason, 
+      communityProjects, souvenirs, events
+     } = this.state;
 
     return (
+      <React.Fragment>
+      {/* <Header /> */}
       <div className={classes.root} id='homepage'>
         <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map(label => (
@@ -177,8 +172,9 @@ class Form extends React.Component {
                     <TextField
                       id='outlined-name'
                       label='Your Name'
-                      value={this.state.user_name}
-                      onChange={this.handleUserNameChange("user_name")}
+                      name="userName"
+                      value={userName}
+                      onChange={this.handleInputChange}
                       margin='normal'
                       variant='outlined'
                       fullWidth
@@ -186,8 +182,9 @@ class Form extends React.Component {
                     <TextField
                       id='outlined-name'
                       label='Your Matric Number'
-                      value={this.state.matric_no}
-                      onChange={this.handleMatricNoChange("matric_no")}
+                      name="matricNo"
+                      value={matricNo}
+                      onChange={this.handleInputChange}
                       margin='normal'
                       variant='outlined'
                       fullWidth
@@ -195,8 +192,10 @@ class Form extends React.Component {
                     <TextField
                       id='outlined-name'
                       label='Your Email'
-                      value={this.state.user_email}
-                      onChange={this.handleUserEmailChange("user_email")}
+                      name="userEmail"
+                      value={userEmail}
+                      onChange={this.handleInputChange}
+                      type='email'
                       margin='normal'
                       variant='outlined'
                       fullWidth
@@ -207,7 +206,7 @@ class Form extends React.Component {
                 {activeStep === 1 && (
                   <div className='flex-column-center'>
                     <Typography variant='h5' color='white' align='center'>
-                      Hello {this.state.name}!
+                      Hello {userName || "Friend"}!
                     </Typography>
                     <Typography variant='subheading' color='inherit'>
                       What should we name our set?
@@ -216,8 +215,9 @@ class Form extends React.Component {
                     <TextField
                       id='outlined-name'
                       label='Set name suggestion'
-                      value={this.state.set_name}
-                      onChange={this.handleSetNameChange("set_name")}
+                      name="setName"
+                      value={setName}
+                      onChange={this.handleInputChange}
                       margin='normal'
                       variant='outlined'
                       fullWidth
@@ -225,8 +225,9 @@ class Form extends React.Component {
                     <TextField
                       id='outlined-name'
                       label='Reason for your choice?'
-                      value={this.state.set_name_reason}
-                      onChange={this.handleSetNameReasonChange("set_name_reason")}
+                      name="setNameReason"
+                      value={setNameReason}
+                      onChange={this.handleInputChange}
                       margin='normal'
                       variant='outlined'
                       fullWidth
@@ -246,8 +247,9 @@ class Form extends React.Component {
                     <TextField
                       id='outlined-name'
                       label='How do you suggest we give back to the community?'
-                      value={this.state.community_projects}
-                      onChange={this.handleCommunityProjectChange("community_projects")}
+                      name="communityProjects"
+                      value={communityProjects}
+                      onChange={this.handleInputChange}
                       margin='normal'
                       variant='outlined'
                       fullWidth
@@ -267,8 +269,9 @@ class Form extends React.Component {
                     <TextField
                       id='outlined-name'
                       label='What souvenirs would you love to see?'
-                      value={this.state.souvenirs}
-                      onChange={this.handleSouvenirChange("souvenirs")}
+                      name="souvenirs"
+                      value={souvenirs}
+                      onChange={this.handleInputChange}
                       margin='normal'
                       variant='outlined'
                       fullWidth
@@ -284,8 +287,9 @@ class Form extends React.Component {
                     <TextField
                       id='outlined-name'
                       label='What events do you want to see?'
-                      value={this.state.events}
-                      onChange={this.handleEventChange("events")}
+                      name="events"
+                      value={events}
+                      onChange={this.handleInputChange}
                       margin='normal'
                       variant='outlined'
                       fullWidth
@@ -297,7 +301,8 @@ class Form extends React.Component {
                 <Button disabled={activeStep === 0} onClick={this.handleBack} className={classes.backButton}>
                   Back
                 </Button>
-                <Button variant='contained' className='button-purple' onClick={this.handleNext}>
+                <Button variant='contained' className='button-purple' onClick={this.handleNext}
+                  disabled={!this.validateForms(this.state.activeStep)}>
                   {activeStep === steps.length - 1 ? "Submit" : "Next"}
                 </Button>
               </div>
@@ -305,6 +310,7 @@ class Form extends React.Component {
           )}
         </div>
       </div>
+    </React.Fragment>
     );
   }
 }

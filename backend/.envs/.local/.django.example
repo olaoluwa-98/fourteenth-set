@@ -1,0 +1,10 @@
+# General
+# ------------------------------------------------------------------------------
+DATABASE_URL=postgres://fixus:fixuspostgrespwd@postgres/fixus
+DJANGO_ACCOUNT_EMAIL_VERIFICATION=optional
+CORS_ORIGIN_WHITELIST=localhost:3000
+
+# Redis
+# ------------------------------------------------------------------------------
+REDIS_URL=redis://redis:6379/0
+CELERY_BROKER_URL=redis://redis:6379/0

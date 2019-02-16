@@ -82,14 +82,6 @@ http {
     text/xml;
     # text/html is always compressed by HttpGzipModule
 
-    # This should be turned on if you are going to have pre-compressed copies (.gz) of
-    # static files available. If not it should be left off as it will cause extra I/O
-    # for the check. It is best if you enable this in a location{} block for
-    # a specific directory, or on an individual server{} level.
-    # gzip_static on;
-
-    # limit_req_zone $binary_remote_addr zone=login:10m rate=1r/s;
-
     upstream django {
         server django:5000;
     }
@@ -99,6 +91,9 @@ http {
         listen [::]:80;
         server_name the14thset.covenantuniversity.edu.ng;
 
+        location / {
+            rewrite ^ https://$host$request_uri? permanent;
+        }
 
         location ~ /.well-known/acme-challenge {
             allow all;
@@ -113,7 +108,6 @@ http {
 
         add_header                Strict-Transport-Security "max-age=31536000" always;
         server_tokens off;
-        ssl                       on;
 
         ssl_certificate           /etc/letsencrypt/live/the14thset.covenantuniversity.edu.ng/fullchain.pem;
         ssl_certificate_key       /etc/letsencrypt/live/the14thset.covenantuniversity.edu.ng/privkey.pem;
@@ -138,6 +132,10 @@ http {
         error_log                 /dev/stderr info;
 
         location / {
+            root /etc/nginx/html;
+        }
+
+        location /api {
             proxy_set_header Host $host;
             proxy_set_header X-Forwarded-For $remote_addr;
             proxy_set_header X-Forwarded-SSL on;
@@ -149,8 +147,28 @@ http {
             add_header Access-Control-Allow-Origin "$http_origin";
         }
 
+        location /the14thset-admin {
+            proxy_set_header Host $host;
+            proxy_set_header X-Forwarded-For $remote_addr;
+            proxy_set_header X-Forwarded-SSL on;
+            proxy_set_header X-Forwarded-Proto https;
+            proxy_pass http://django$request_uri;
+            proxy_ssl_session_reuse off;
+            proxy_intercept_errors on;
+            proxy_redirect off;
+            add_header Access-Control-Allow-Origin "$http_origin";
+        }
+
+        location /dstatic {
+            alias /var/the14thset_static;
+        }
+        
         location /static {
-            alias /etc/nginx/html/static; # your Django project's static files - amend as required
+            alias /etc/nginx/html/static;
+        }
+
+        location /media {
+            alias /var/the14thset_media;
         }
 
         error_page   500 502 503 504  /50x.html;

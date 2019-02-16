@@ -270,6 +270,9 @@ tags
 ### Project template
 .pytest_cache/
 .env
+.django
+.nginx
+.postgres
 startup*.sh
 node_modules
 venv*
@@ -300,3 +303,5 @@ venv*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+database-backup.sh
