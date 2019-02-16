@@ -8,7 +8,7 @@ services:
   django: &django
     build:
       context: ./backend
-      dockerfile: ./compose/local/django/Dockerfile
+      dockerfile: compose/local/django/Dockerfile
     image: fourteenth_set_local_django
     depends_on:
       - postgres
@@ -24,7 +24,7 @@ services:
   postgres:
     build:
       context: ./backend
-      dockerfile: ./compose/production/postgres/Dockerfile
+      dockerfile: compose/production/postgres/Dockerfile
     image: fourteenth_set_production_postgres
     volumes:
       - local_postgres_data:/var/lib/postgresql/data
