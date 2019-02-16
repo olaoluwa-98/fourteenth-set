@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.urls import include, path, re_path
+from django.urls import include, path
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
@@ -15,7 +15,7 @@ if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit
     # these url in browser to see how these error pages look like.
     urlpatterns += [
-        re_path(".*", TemplateView.as_view(template_name="index.html")),
+        path("", TemplateView.as_view(template_name="index.html")),
         path(
             "400/",
             default_views.bad_request,
