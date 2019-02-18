@@ -1,28 +1,28 @@
-import React from 'react';
-import { Typography, Grid, Button, CssBaseline } from '@material-ui/core';
-import { Link } from 'react-router-dom';
-import Header from '../../components/Header';
+import React from "react";
+import { Typography, Grid, Button, CssBaseline } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import Header from "../../components/Header";
 
 class Home extends React.PureComponent {
   render() {
     return (
-      <div class="hero">
+      <div className="hero">
         <CssBaseline />
         <Header />
 
-        <Grid spacing={24} id="homepage">
-          <Typography className="large-text" variant="h3" color="white">
-            Engaging every Student to create a{' '}
+        <Grid id="homepage">
+          <Typography className="large-text" variant="h3">
+            Engaging every Student to create a{" "}
             <span className="text--purple cursive-text-bold">
               memorable convocation experience.
             </span>
-          </Typography>{' '}
+          </Typography>{" "}
           <br />
           <Typography variant="h6" color="inherit">
             Lets fill our convocation experience with things that matter
-          </Typography>{' '}
+          </Typography>{" "}
           <br />
-          <Link to={'/make-suggestion'}>
+          <Link to={"/make-suggestion"}>
             <Button
               variant="contained"
               className="button-purple"
