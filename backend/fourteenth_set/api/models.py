@@ -1,7 +1,5 @@
 from django.db import models
 
-# from django.utils.translation import ugettext_lazy as _
-
 
 class Suggestion(models.Model):
     user_name = models.CharField(max_length=50, blank=True, null=True)

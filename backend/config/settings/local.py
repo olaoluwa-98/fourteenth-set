@@ -59,3 +59,4 @@ CELERY_TASK_EAGER_PROPAGATES = True
 # ------------------------------------------------------------------------------
 
 CORS_ORIGIN_WHITELIST = env.list("CORS_ORIGIN_WHITELIST") or ["localhost:3000"]
+CORS_ORIGIN_ALLOW_ALL = False
