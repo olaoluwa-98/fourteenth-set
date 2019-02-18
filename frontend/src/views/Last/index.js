@@ -8,12 +8,14 @@ class LastPage extends React.PureComponent {
       <React.Fragment>
         <CssBaseline />
         <Header />
-        <div className='center' id='lastpage'>
-          <Grid spacing={24} justify='center'>
-            <Typography variant='h4'>
-              <span className='text--purple large-text'>Thank you for taking your time to be involved</span>{" "}
+        <div className="center" id="lastpage">
+          <Grid justify="center">
+            <Typography variant="h4">
+              <span className="text--purple large-text">
+                Thank you for taking your time to be involved
+              </span>{" "}
             </Typography>
-            <Typography variant='h5'>We appreciate your input</Typography>
+            <Typography variant="h5">We appreciate your input</Typography>
           </Grid>
         </div>
       </React.Fragment>
