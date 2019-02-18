@@ -4,11 +4,10 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import UserChangeForm as DUserChangeForm, UserCreationForm as DUserCreationForm
 from .models import User
-from allauth.account.models import EmailAddress
-from allauth.socialaccount.models import SocialApp, SocialToken, SocialAccount
 from django.contrib.sites.models import Site
 
 
+admin.site.disable_action('delete_selected')
 class UserCreationForm(DUserCreationForm):
     class Meta:
         model = User
@@ -62,8 +61,4 @@ class UserAdmin(auth_admin.UserAdmin):
     search_fields = ["email"]
 
 
-admin.site.unregister(EmailAddress)
-admin.site.unregister(SocialAccount)
-admin.site.unregister(SocialApp)
-admin.site.unregister(SocialToken)
 admin.site.unregister(Site)

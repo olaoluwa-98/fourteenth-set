@@ -277,6 +277,9 @@ startup*.sh
 node_modules
 venv*
 
+# Project files should be checked into the repository, unless a significant
+# proportion of contributors will probably not be using Sublime Text
+# *.sublime-project
 
 # Frontend gitignore
 
