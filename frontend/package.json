@@ -4,7 +4,9 @@
   "private": true,
   "homepage": "http://the14thset.covenantuniversity.edu.ng",
   "dependencies": {
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "@material-ui/core": "^3.9.2",
+    "@material-ui/icons": "^3.0.2",
     "prop-types": "^15.6.2",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",

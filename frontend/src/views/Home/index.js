@@ -2,6 +2,7 @@ import React from "react";
 import { Typography, Grid, Button, CssBaseline } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 class Home extends React.PureComponent {
   render() {
@@ -34,6 +35,7 @@ class Home extends React.PureComponent {
             </Button>
           </Link>
         </Grid>
+        <Footer />
       </div>
     );
   }
