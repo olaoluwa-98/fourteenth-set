@@ -33,11 +33,6 @@ class Home extends React.PureComponent {
               Make Suggestions
             </Button>
           </Link>
-          <br />
-          <br />
-          <em>
-            <small>Suggestion window open till Saturday 11:59pm</small>
-          </em>
         </Grid>
       </div>
     );
