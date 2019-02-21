@@ -6,6 +6,7 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
+import {validateMatricNo} from "../../utils";
 // import Header from "../../components/Header";
 // import logo from "../../assets/img/logo.svg";
 
@@ -52,21 +53,10 @@ class Form extends React.Component {
   }
 
   handleInputChange = event => {
-    const name = event.target.name;
-    const value = event.target.value;
+    const {name, value} = event.target;
     this.setState({
       [name]: value
     });
-    this.validateMatric();
-  };
-
-  validateMatric = () => {
-    let { matricNo } = this.state;
-    if (matricNo.length === 10 || matricNo === 0) {
-      return true;
-    } else {
-      return false;
-    }
   };
 
   postData(url = ``, data = {}) {
@@ -83,7 +73,7 @@ class Form extends React.Component {
     switch (activeStep) {
       case 0:
         let { userName, matricNo, userEmail } = this.state;
-        return userName !== "" && matricNo !== "" && userEmail !== "";
+        return userName !== "" && validateMatricNo(matricNo).error === false && userEmail !== "";
       case 1:
         let { setName, setNameReason } = this.state;
         return setName !== "" && setNameReason !== "";

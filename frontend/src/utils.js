@@ -42,19 +42,22 @@ let courseCodes = {
 
 let courseCodeList = Object.keys(courseCodes);
 
-function validateMatricNo(matricNo) {
+export function validateMatricNo(matricNo) {
   let result = { error: false, msg: "", programs: [] };
   if (matricNo == null || matricNo == undefined) {
     result.error = true;
     result.msg = "Matriculation number is required";
   }
-  var matricNo = matricNo.toLowerCase();
-  var courseCode = matricNo.substr(2, 2);
+  
+  matricNo = matricNo.toLowerCase();
+  let courseCode = matricNo.substr(2, 2);
   if (!courseCodeList.includes(courseCode)) {
     result.error = true;
     result.msg = "Course code doesn't exist";
   }
-  var verify = /(0[1-9]|1[0-4]|1[6-9])([a-z]{2})([0-9]{6})|(15)([a-z]{2})([0-9]{5})/;
+  // 15CG035944 is validated and should not be FIX!
+  // Matriculation numbers longer than 10 is working also
+  const verify = /(0[1-9]|1[0-4]|1[6-9])([a-z]{2})([0-9]{6})|(15)([a-z]{2})([0-9]{5})/;
 
   if (matricNo.match(verify)) {
     result.programs = courseCodes[courseCode];
