@@ -150,6 +150,10 @@ http {
         location /iserve {
             rewrite ^ https://bit.ly/iservecu redirect;
         }
+        
+        location /unleash {
+            rewrite ^ https:/bit.ly/unleashcu redirect;
+        }
 
         location /the14thset-admin {
             proxy_set_header Host $host;
